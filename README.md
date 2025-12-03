@@ -1,46 +1,112 @@
-# New Nx Repository
+# Full Stack App - Nx Monorepo
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+A full-stack application built with [Nx](https://nx.dev) monorepo, featuring a **Fastify API** backend and a **Next.js** frontend.
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+## 📦 Applications
 
-## Generate a library
+| App        | Description                  | Port | Path          |
+| ---------- | ---------------------------- | ---- | ------------- |
+| **api**    | Fastify REST API server      | 8005 | `apps/api`    |
+| **client** | Next.js frontend application | 8000 | `apps/client` |
 
-```sh
-npx nx g @nx/js:lib packages/pkg1 --publishable --importPath=@my-org/pkg1
-```
+## 🚀 Getting Started
 
-## Run tasks
+### Prerequisites
 
-To build the library use:
+- Node.js (v18+)
+- npm or yarn
 
-```sh
-npx nx build pkg1
-```
-
-To run any task with Nx use:
+### Installation
 
 ```sh
-npx nx <target> <project-name>
+npm install
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+### Development
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Run both applications in parallel:
 
-## Versioning and releasing
-
-To version and release the library use
-
-```
-npx nx release
+```sh
+npx nx run-many -t serve dev --projects=api,client --parallel
 ```
 
-Pass `--dry-run` to see what would happen without actually releasing the library.
+Or run them individually:
 
-[Learn more about Nx release &raquo;](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+```sh
+# Run the API server (http://localhost:8005)
+npx nx serve api
+
+# Run the Next.js client (http://localhost:8000)
+npx nx dev client
+```
+
+### Build
+
+```sh
+# Build all projects
+npx nx run-many -t build
+
+# Build specific project
+npx nx build api
+npx nx build client
+```
+
+### Testing
+
+```sh
+# Run all tests
+npx nx run-many -t test
+
+# Run tests for specific project
+npx nx test api
+npx nx test client
+```
+
+### Linting
+
+```sh
+# Lint all projects
+npx nx run-many -t lint
+
+# Lint specific project
+npx nx lint api
+npx nx lint client
+```
+
+## 📁 Project Structure
+
+```plaintext
+├── apps/
+│   ├── api/                 # Fastify backend
+│   │   └── src/
+│   │       ├── app/
+│   │       │   ├── plugins/
+│   │       │   └── routes/
+│   │       └── main.ts
+│   └── client/              # Next.js frontend
+│       └── src/
+│           └── app/
+├── packages/                # Shared libraries
+├── nx.json
+└── package.json
+```
+
+## 🛠️ Tech Stack
+
+- **Monorepo:** [Nx](https://nx.dev)
+- **Backend:** [Fastify](https://fastify.dev)
+- **Frontend:** [Next.js 15](https://nextjs.org) with App Router
+- **Language:** TypeScript
+- **Testing:** Jest
+- **Linting:** ESLint
+
+## 📊 Visualize the Project Graph
+
+```sh
+npx nx graph
+```
 
 ## Keep TypeScript project references up to date
 
