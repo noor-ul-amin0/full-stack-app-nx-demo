@@ -1,0 +1,21 @@
+{
+  "name": "@org/client",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "client",
+    "targets": {
+      "dev": {
+        "command": "next dev --port 8000",
+        "options": {
+          "cwd": "apps/client"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "next": "~15.2.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
