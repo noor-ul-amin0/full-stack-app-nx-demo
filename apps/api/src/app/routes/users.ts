@@ -27,11 +27,11 @@ const generateUser = (): User => ({
 });
 
 // In-memory store for users
-let users: User[] = Array.from({ length: 10 }, generateUser);
+const users: User[] = Array.from({ length: 10 }, generateUser);
 
 export default async function (fastify: FastifyInstance) {
   // GET /users - Get all users
-  fastify.get('/users', async function (request, reply) {
+  fastify.get('/users', async function (request) {
     const { role, isActive } = request.query as {
       role?: string;
       isActive?: string;
